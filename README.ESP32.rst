@@ -40,6 +40,12 @@ Your device is called something like "/dev/cu.*" depending on the type of device
     ls /dev/cu.*
     esptool.py --port /dev/cu.usbserial --baud 460800 write_flash 0 combined.bin
 
+If you can't find any devices which look like that, you need to install third-party
+"VCP" (Virtual COM Port) drivers for your device.  Typical locations:
+
+* http://www.ftdichip.com/Drivers/VCP.htm
+* http://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers
+
 Windows 10
 ----------
 
