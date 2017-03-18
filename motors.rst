@@ -10,21 +10,23 @@ Note that if you're using a NodeMCU board, the pin numbers printed on the board
 are not the same as the ESP8266 GPIO numbers.
 See https://nodemcu.readthedocs.io/en/master/en/modules/gpio/
 
-NodeMCU | ESP8266 / MicroPython | Notes
---------+-----------------------+------------------------------
-D0      | GPIO16                | Limited features, LED on module
-D1      | GPIO5                 |
-D2      | GPIO4                 | 
-D3      | GPIO0                 | Connected to button
-D4      | GPIO2                 | Connected to LED on module
-D5      | GPIO14                |
-D6      | GPIO12                |
-D7      | GPIO13                |
-D8      | GPIO15                |
-D9      | GPIO3                 | UART RXD0 (used for console)
-D10     | GPIO1                 | UART TXD0 (used for console)
-D11     | GPIO9                 |
-D12     | GPIO10                |
+======= ===================== ================================
+NodeMCU ESP8266 / MicroPython Notes
+======= ===================== ================================
+D0      GPIO16                Limited features, LED on NodeMCU
+D1      GPIO5                 
+D2      GPIO4                 
+D3      GPIO0                 Connected to button
+D4      GPIO2                 Connected to LED on module
+D5      GPIO14                
+D6      GPIO12                
+D7      GPIO13                
+D8      GPIO15                
+D9      GPIO3                 UART RXD0 (used for console)
+D10     GPIO1                 UART TXD0 (used for console)
+D11     GPIO9                 (used for module flash memory)
+D12     GPIO10                (used for module flash memory)
+======= ===================== ================================
 
 Output Pins
 ===========
@@ -165,11 +167,13 @@ the frequency of the pulses.
 
 There are three pins:
 
-Wire color | Purpose | NodeMCU Pin
------------+---------+-------------
-Brown      | Ground  | GND
-Red        | Power   | Vin
-Orange     | Signal  | D4
+========== ======= ===========
+Wire color Purpose NodeMCU Pin
+========== ======= ===========
+Brown      Ground  GND
+Red        Power   Vin
+Orange     Signal  D4
+========== ======= ===========
 
 Thankfully this is easy enough to do with the PWM control.  Set the frequency to 100Hz (one
 cycle per 10ms) and the duty cycle to between 0.1 (10ms * 0.1 = 1ms) and 0.2 (10ms * 0.2 = 2ms)
@@ -193,6 +197,19 @@ Stepper Motors
 Stepper motors have multiple separate coils, and unlike DC motors there's no brushes to switch
 the current around and keep things spinning, instead you have to do it yourself.  The two
 separate phases need to be controlled separately.
+
+===== == == == ==
+Phase A+ A- B+ B-
+===== == == == ==
+0     1  0  0  0
+1     1  0  1  0
+2     0  0  1  0
+3     0  1  1  0
+4     0  1  0  0
+5     0  1  0  1
+6     0  0  0  1
+7     1  0  0  1
+===== == == == ==
 
 This means you have more work to do, but you also have more control::
 
