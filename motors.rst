@@ -10,6 +10,22 @@ Note that if you're using a NodeMCU board, the pin numbers printed on the board
 are not the same as the ESP8266 GPIO numbers.
 See https://nodemcu.readthedocs.io/en/master/en/modules/gpio/
 
+NodeMCU | ESP8266 / MicroPython | Notes
+--------+-----------------------+------------------------------
+D0      | GPIO16                | Limited features, LED on module
+D1      | GPIO5                 |
+D2      | GPIO4                 | 
+D3      | GPIO0                 | Connected to button
+D4      | GPIO2                 | Connected to LED on module
+D5      | GPIO14                |
+D6      | GPIO12                |
+D7      | GPIO13                |
+D8      | GPIO15                |
+D9      | GPIO3                 | UART RXD0 (used for console)
+D10     | GPIO1                 | UART TXD0 (used for console)
+D11     | GPIO9                 |
+D12     | GPIO10                |
+
 Output Pins
 ===========
 
@@ -21,7 +37,7 @@ makes the pins available to your Python code, and let's you specify how you
 want to use that pin.  To configure a pin as a digital output::
 
      import machine
-     pin = machine.Pin(4, machine.Pin.OUT)
+     pin = machine.Pin(2, machine.Pin.OUT)
 
 On NodeMCU, GPIO4 is connected to an on-board LED, so you should be able to turn
 the LED on and off::
@@ -35,7 +51,7 @@ of 'hello world'::
      import machine
      import time
 
-     pin = machine.Pin(4, machine.Pin.OUT)
+     pin = machine.Pin(2, machine.Pin.OUT)
      while True:
          pin(True)
          time.sleep(1)
@@ -56,21 +72,23 @@ and it lets you set the proportion of the time the LED is on, called the 'duty c
 
     _/``````````\__/``````````\__/```````````\__ duty cycle 90%
 
-To configure a pin as PWM, wrap the `machine.Pin` object in a `machine.PWM` object:
+To configure a pin as PWM, wrap the `machine.Pin` object in a `machine.PWM` object::
+
 
     import machine
-    pin = machine.Pin(4, machine.Pin.OUT)
+    pin = machine.Pin(2, machine.Pin.OUT)
     pwm = machine.PWM(pin)
 
     pwm.freq(1000)
-    pwm.duty(0.5)
+    pwm.duty(512)
 
-This lets you fade the LED in and out like so::
+`freq` sets the frequency (in Hz) and `duty` sets the duty cycle between 0 (always off)
+and 1023 (always on).  This lets you fade the LED in and out like so::
 
      import machine
      import time
 
-     pin = machine.Pin(4, machine.Pin.OUT)
+     pin = machine.Pin(2, machine.Pin.OUT)
      pwm = machine.PWM(pin)
      pwm.freq(1000)
 
@@ -93,7 +111,7 @@ The NodeMCU also has a button, attached to GPIO0::
 
     pin = machine.Pin(0, machine.Pin.IN)
     while True:
-        if pin.value(): print "True"
+        if pin(): print "True"
         else: print "False" 
         
 Analog Inputs
@@ -103,9 +121,9 @@ There's also an analog input pin, sadly only one on ESP8266::
 
     import machine
 
-    pin = machine.ADC(0)
+    adc = machine.ADC(0)
     while True:
-        print pin.value()
+        print adc.read()
 
 Controlling Hardware
 ====================
@@ -145,28 +163,38 @@ ones, so if you go past the acceptable range for the servo you may hear it whine
 to move past its limits, or it may 'hunt' (wiggle back and forth) if it isn't happy with
 the frequency of the pulses.
 
-Thankfully this is easy enough to do with the PWM control.  Set the frequency to 50Hz (one
-cycle per 20ms) and the duty cycle to between 0.05 (20ms * 0.05 = 1ms) and 0.10 (20ms * 0.10 = 2ms)
+There are three pins:
+
+Wire color | Purpose | NodeMCU Pin
+-----------+---------+-------------
+Brown      | Ground  | GND
+Red        | Power   | Vin
+Orange     | Signal  | D4
+
+Thankfully this is easy enough to do with the PWM control.  Set the frequency to 100Hz (one
+cycle per 10ms) and the duty cycle to between 0.1 (10ms * 0.1 = 1ms) and 0.2 (10ms * 0.2 = 2ms)
 We can adapt the LED PWM code above::
 
     import machine
     import time
 
-    pin = machine.Pin(4, machine.Pin.OUT)
+    pin = machine.Pin(2, machine.Pin.OUT)
     pwm = machine.PWM(pin)
-    pwm.freq(50)
+    pwm.freq(100)
 
     while True:
-        for d in range(5,10):
-            pwm.duty(d/100)
+        for d in range(100,200):
+            pwm.duty(d)
             time.sleep(0.1)
 
 Stepper Motors
 --------------
 
 Stepper motors have multiple separate coils, and unlike DC motors there's no brushes to switch
-the current around and keep things spinning, instead you have to do it yourself.  This
-means you have more work to do, but you also have more control::
+the current around and keep things spinning, instead you have to do it yourself.  The two
+separate phases need to be controlled separately.
+
+This means you have more work to do, but you also have more control::
 
     import machine
 
