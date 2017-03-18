@@ -214,12 +214,13 @@ Phase A+ A- B+ B-
 This means you have more work to do, but you also have more control::
 
     import machine
+    import time
 
     pins = [
-        machine.Pin(4, machine.Pin.OUT)  # 1
-        machine.Pin(5, machine.Pin.OUT)  # 2
-        machine.Pin(6, machine.Pin.OUT)  # 4
-        machine.Pin(7, machine.Pin.OUT)  # 8
+        machine.Pin(12, machine.Pin.OUT),  # 1
+        machine.Pin(13, machine.Pin.OUT),  # 2
+        machine.Pin(14, machine.Pin.OUT),  # 4
+        machine.Pin(15, machine.Pin.OUT),  # 8
     ]
 
     phases = [ 1, 5, 4, 6, 2, 10, 8, 9 ]
@@ -228,5 +229,18 @@ This means you have more work to do, but you also have more control::
         for phase in phases:
             for n, p in enumerate(pins):
                 pins[n](phase & 1<<n)
+            time.sleep(0.001)
 
+Wiring
+~~~~~~
 
+NodeMCU GND to V- and NodeMCU Vin to V+.
+
+======= ======= ====== === =====
+ESP8266 NodeMCU Driver LED Phase
+======= ======= ====== === =====
+GPIO12  D6      IN3    C   B-
+GPIO13  D7      IN4    D   A-
+GPIO14  D5      IN2    B   B+
+GPIO15  D8      IN1    A   A+
+======= ======= ====== === =====
