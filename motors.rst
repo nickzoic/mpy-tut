@@ -69,7 +69,7 @@ PWM Outputs
 You can also turn the LED "partly on" by turning it on and off rapidly.  Doing this
 in Python would be flickery and a waste of power, but thankfully there's hardware support
 for pulse-width modulation (PWM).  This just means turning the pin on and off rapidly,
-and it lets you set the proportion of the time the LED is on, called the 'duty cycle'::
+and it lets you set the proportion of the time the LED is on, called the 'duty cycle':
 
 .. image:: img/dutycycle.png
    :width: 75%
