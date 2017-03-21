@@ -140,7 +140,7 @@ IO Pins can supply, so we need a driver to amplify the signals from the MCU. Thi
 be as simple as a single transistor switched from an I/O pin.
 
 .. image:: img/dcmotor.png
-   :width: 75%
+   :width: 50%
 
 Then you can turn the motor on and off using the pin::
 
@@ -160,8 +160,8 @@ uses an H-Bridge to do this, but all we need to know is that it has a reverse pi
 
     pin_reverse = machine.Pin(5, machine.Pin.OUT) 
 
-.. image:: img/hbridge:png
-   :width: 75%
+.. image:: img/hbridge.png
+   :width: 50%
 
 Servos
 ------
@@ -255,8 +255,8 @@ on 3.3V CMOS.
 
 Wire NodeMCU GND to V- and NodeMCU Vin to V+, and the logic pins as follows:
 
-.. image:: unipolar.png
-   :width: 75%
+.. image:: img/unipolar.png
+   :width: 50%
 
 ======= ======= ====== === =====
 ESP8266 NodeMCU Driver LED Phase
