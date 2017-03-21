@@ -6,6 +6,12 @@ This should work on either ESP8266 or ESP32 MicroPython, but the instructions ar
 written for ESP8266.  There are minor differences, eg: the numbers of pins and their
 capabilities.
 
+I/O Pins
+========
+
+NodeMCU
+-------
+
 Note that if you're using a NodeMCU board, the pin numbers printed on the board
 are not the same as the ESP8266 GPIO numbers.
 See https://nodemcu.readthedocs.io/en/master/en/modules/gpio/
@@ -28,9 +34,6 @@ D11     GPIO9                 (used for module flash memory)
 D12     GPIO10                (used for module flash memory)
 ======= ===================== ================================
 
-Output Pins
-===========
-
 Digital Outputs
 ---------------
 
@@ -41,7 +44,7 @@ want to use that pin.  To configure a pin as a digital output::
      import machine
      pin = machine.Pin(2, machine.Pin.OUT)
 
-On NodeMCU, GPIO4 is connected to an on-board LED, so you should be able to turn
+On NodeMCU, GPIO2 is connected to an on-board LED, so you should be able to turn
 the LED on and off::
 
      pin(True)
@@ -68,11 +71,8 @@ in Python would be flickery and a waste of power, but thankfully there's hardwar
 for pulse-width modulation (PWM).  This just means turning the pin on and off rapidly,
 and it lets you set the proportion of the time the LED is on, called the 'duty cycle'::
 
-    _/`\___________/`\___________/`\____________ duty cycle 10%
-
-    _/``````\______/``````\______/``````\______/ duty cycle 50%
-
-    _/``````````\__/``````````\__/```````````\__ duty cycle 90%
+.. image:: img/dutycycle.png
+   :width: 75%
 
 To configure a pin as PWM, wrap the `machine.Pin` object in a `machine.PWM` object::
 
@@ -133,8 +133,16 @@ Controlling Hardware
 DC motors 
 ---------
 
+See also: https://en.wikipedia.org/wiki/Brushed_DC_electric_motor
+
 DC motors turn when there's a voltage across them.  But they need more current than our
-IO Pins can supply, so we need a driver to amplify the signals from the MCU::
+IO Pins can supply, so we need a driver to amplify the signals from the MCU. This could
+be as simple as a single transistor switched from an I/O pin.
+
+.. image:: img/dcmotor.png
+   :width: 75%
+
+Then you can turn the motor on and off using the pin::
 
     pin_motor = machine.Pin(4, machine.Pin.OUT)
 
@@ -151,6 +159,9 @@ uses an H-Bridge to do this, but all we need to know is that it has a reverse pi
     pwm_motor = machine.PWM(pin_motor)
 
     pin_reverse = machine.Pin(5, machine.Pin.OUT) 
+
+.. image:: img/hbridge:png
+   :width: 75%
 
 Servos
 ------
@@ -198,6 +209,8 @@ Stepper motors have multiple separate coils, and unlike DC motors there's no bru
 the current around and keep things spinning, instead you have to do it yourself.  The two
 separate phases need to be controlled separately.
 
+For more details: https://en.wikipedia.org/wiki/Stepper_motor
+
 ===== == == == ==
 Phase A+ A- B+ B-
 ===== == == == ==
@@ -234,7 +247,16 @@ This means you have more work to do, but you also have more control::
 Wiring
 ~~~~~~
 
-NodeMCU GND to V- and NodeMCU Vin to V+.
+As a demo, I have some `28BYJ-48 4-phase unipolar geared stepper motors
+<http://robocraft.ru/files/datasheet/28BYJ-48.pdf>` and
+`ULN2003A <https://en.wikipedia.org/wiki/ULN2003A>`_  driver boards
+to suit.  Despite being designed for 5V TTL logic these work well enough
+on 3.3V CMOS.
+
+Wire NodeMCU GND to V- and NodeMCU Vin to V+, and the logic pins as follows:
+
+.. image:: unipolar.png
+   :width: 75%
 
 ======= ======= ====== === =====
 ESP8266 NodeMCU Driver LED Phase
