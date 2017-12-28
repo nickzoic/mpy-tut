@@ -1,5 +1,5 @@
 ===============================
- MicroPython: Journey Onwards!
+ MicroPython: Input and Output
 ===============================
 
 This should work on either ESP8266 or ESP32 MicroPython, but the instructions are
@@ -8,6 +8,29 @@ capabilities.
 
 I/O Pins
 ========
+
+The number of pins, and their capabilities, varies between ESP8266 and ESP32, and 
+not all pins are available on all boards.
+
+ESP8266 Boards
+~~~~~~~~~~~~~~
+
+Witty Cloud
+-----------
+
+The Witty Cloud development board has some hardware already on board, namely a 
+three-colour LED and a light-dependent resistor.
+
+:wq======= ============
+ESP8266 Connection
+======= ============
+GPIO0   Flash button
+GPIO2   Module LED
+GPIO4   Pushbutton
+GPIO12  Blue LED
+GPIO13  Green LED
+GPIO15  Red LED
+======= ============
 
 NodeMCU
 -------
@@ -33,6 +56,9 @@ D10     GPIO1                 UART TXD0 (used for console)
 D11     GPIO9                 (used for module flash memory)
 D12     GPIO10                (used for module flash memory)
 ======= ===================== ================================
+
+MicroPython I/O
+===============
 
 Digital Outputs
 ---------------
@@ -129,6 +155,7 @@ There's also an analog input pin, sadly only one on ESP8266::
 
 Controlling Hardware
 ====================
+
 
 DC motors 
 ---------
