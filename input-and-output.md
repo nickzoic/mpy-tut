@@ -181,13 +181,11 @@ the frequency of the pulses.
 
 There are three pins:
 
-========== ======= ===========
-Wire color Purpose NodeMCU Pin
-========== ======= ===========
-Brown      Ground  GND
-Red        Power   Vin
-Orange     Signal  D4
-========== ======= ===========
+Wire color | Purpose | NodeMCU Pin
+-----------|---------|------------
+Brown      | Ground  | GND
+Red        | Power   | Vin
+Orange     | Signal  | D4
 
 Thankfully this is easy enough to do with the PWM control.  Set the frequency to 100Hz (one
 cycle per 10ms) and the duty cycle to between 0.1 (10ms * 0.1 = 1ms) and 0.2 (10ms * 0.2 = 2ms)
@@ -213,18 +211,16 @@ separate phases need to be controlled separately.
 
 For more details: [Wikipedia: Stepper Motors](https://en.wikipedia.org/wiki/Stepper_motor)
 
-===== == == == ==
-Phase A+ A- B+ B-
-===== == == == ==
-0     1  0  0  0
-1     1  0  1  0
-2     0  0  1  0
-3     0  1  1  0
-4     0  1  0  0
-5     0  1  0  1
-6     0  0  0  1
-7     1  0  0  1
-===== == == == ==
+Phase | A+ | A- | B+ | B-
+------|----|----|----|----
+0     | 1  | 0  | 0  | 0
+1     | 1  | 0  | 1  | 0
+2     | 0  | 0  | 1  | 0
+3     | 0  | 1  | 1  | 0
+4     | 0  | 1  | 0  | 0
+5     | 0  | 1  | 0  | 1
+6     | 0  | 0  | 0  | 1
+7     | 1  | 0  | 0  | 1
 
 This means you have more work to do, but you also have more control::
 
@@ -258,11 +254,9 @@ Wire NodeMCU GND to V- and NodeMCU Vin to V+, and the logic pins as follows:
 
 ![Unipolar Stepper](img/unipolar.png)
 
-======= ======= ====== === =====
-ESP8266 NodeMCU Driver LED Phase
-======= ======= ====== === =====
-GPIO12  D6      IN3    C   B-
-GPIO13  D7      IN4    D   A-
-GPIO14  D5      IN2    B   B+
-GPIO15  D8      IN1    A   A+
-======= ======= ====== === =====
+ESP8266 | NodeMCU | Driver | LED | Phase
+--------|---------|--------|-----|-------
+GPIO12  | D6      | IN3    | C   | B-
+GPIO13  | D7      | IN4    | D   | A-
+GPIO14  | D5      | IN2    | B   | B+
+GPIO15  | D8      | IN1    | A   | A+

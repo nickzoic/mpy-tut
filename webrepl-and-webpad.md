@@ -11,7 +11,7 @@ you'll see the text also appearing in the serial REPL.
 
 1. You can use WebREPL code direct from http://micropython.org/webrepl/
 
-   Or download it using wget::
+   Or download it using wget:
 
 ```
     wget -r -nH http://micropython.org/webrepl/
@@ -43,11 +43,11 @@ you'll see the text also appearing in the serial REPL.
 WebPad takes a slightly different approach, kind of like iPython for
 WebREPL.  Either:
 
-    `git clone https://github.com/nickzoic/mpy-webpad/`
+    git clone https://github.com/nickzoic/mpy-webpad/
 
 or just download it (there's only one file):
 
-    `wget https://raw.githubusercontent.com/nickzoic/mpy-webpad/master/webpad.html`
+    wget https://raw.githubusercontent.com/nickzoic/mpy-webpad/master/webpad.html
 
 Get WebREPL working first, then point WebPad at your IP address and connect up.
 There's instructions included, but the point is that it lets you go back
