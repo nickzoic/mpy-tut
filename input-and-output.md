@@ -1,67 +1,53 @@
-===============================
- MicroPython: Input and Output
-===============================
+# MicroPython: Input and Output
 
 This should work on either ESP8266 or ESP32 MicroPython, but the instructions are
 written for ESP8266.  There are minor differences, eg: the numbers of pins and their
 capabilities.
 
-I/O Pins
-========
+## I/O Pins
 
 The number of pins, and their capabilities, varies between ESP8266 and ESP32, and 
 not all pins are available on all boards.
 
-ESP8266 Boards
-~~~~~~~~~~~~~~
-
-Witty Cloud
------------
+### Witty Cloud (ESP8266)
 
 The Witty Cloud development board has some hardware already on board, namely a 
 three-colour LED and a light-dependent resistor.
 
-:wq======= ============
-ESP8266 Connection
-======= ============
-GPIO0   Flash button
-GPIO2   Module LED
-GPIO4   Pushbutton
-GPIO12  Blue LED
-GPIO13  Green LED
-GPIO15  Red LED
-======= ============
+ESP8266 | Connection
+--------|-----------
+GPIO0   | Flash button
+GPIO2   | Module LED
+GPIO4   | Pushbutton
+GPIO12  | Blue LED
+GPIO13  | Green LED
+GPIO15  | Red LED
 
-NodeMCU
--------
+### NodeMCU (ESP8266)
 
 Note that if you're using a NodeMCU board, the pin numbers printed on the board
 are not the same as the ESP8266 GPIO numbers.
 See https://nodemcu.readthedocs.io/en/master/en/modules/gpio/
 
-======= ===================== ================================
-NodeMCU ESP8266 / MicroPython Notes
-======= ===================== ================================
-D0      GPIO16                Limited features, LED on NodeMCU
-D1      GPIO5                 
-D2      GPIO4                 
-D3      GPIO0                 Connected to button
-D4      GPIO2                 Connected to LED on module
-D5      GPIO14                
-D6      GPIO12                
-D7      GPIO13                
-D8      GPIO15                
-D9      GPIO3                 UART RXD0 (used for console)
-D10     GPIO1                 UART TXD0 (used for console)
-D11     GPIO9                 (used for module flash memory)
-D12     GPIO10                (used for module flash memory)
-======= ===================== ================================
+NodeMCU | ESP8266 / MicroPython | Notes
+--------|-----------------------|---------------
+D0      GPIO16                  | Limited features, LED on NodeMCU
+D1      GPIO5                   |
+D2      GPIO4                   |
+D3      GPIO0                   | Connected to button
+D4      GPIO2                   |Connected to LED on module
+D5      GPIO14                  | 
+D6      GPIO12                  | 
+D7      GPIO13                  | 
+D8      GPIO15                  | 
+D9      GPIO3                   |UART RXD0 (used for console)
+D10     GPIO1                   |UART TXD0 (used for console)
+D11     GPIO9                   |(used for module flash memory)
+D12     GPIO10                  |(used for module flash memory)
 
-MicroPython I/O
-===============
+## MicroPython I/O
 
-Digital Outputs
----------------
+### Digital Outputs
 
 To control an output pin, you must first configure it.  The `machine` library
 makes the pins available to your Python code, and let's you specify how you
@@ -89,19 +75,16 @@ of 'hello world'::
          pin(False)
          time.sleep(1)
 
-PWM Outputs
------------
+### PWM Outputs
 
 You can also turn the LED "partly on" by turning it on and off rapidly.  Doing this
 in Python would be flickery and a waste of power, but thankfully there's hardware support
 for pulse-width modulation (PWM).  This just means turning the pin on and off rapidly,
 and it lets you set the proportion of the time the LED is on, called the 'duty cycle':
 
-.. image:: img/dutycycle.png
-   :width: 75%
+![Duty Cycle](img/dutycycle.png)
 
 To configure a pin as PWM, wrap the `machine.Pin` object in a `machine.PWM` object::
-
 
     import machine
     pin = machine.Pin(2, machine.Pin.OUT)
@@ -130,8 +113,7 @@ and 1023 (always on).  This lets you fade the LED in and out like so::
 
 Yay, it's 'throbby', the microcontroller equivalent of "Hello, World!\n".
 
-Digital Inputs
---------------
+### Digital Inputs
 
 The NodeMCU also has a button, attached to GPIO0::
 
@@ -142,8 +124,7 @@ The NodeMCU also has a button, attached to GPIO0::
         if pin(): print "True"
         else: print "False" 
         
-Analog Inputs
--------------
+### Analog Inputs
 
 There's also an analog input pin, sadly only one on ESP8266::
 
@@ -153,21 +134,18 @@ There's also an analog input pin, sadly only one on ESP8266::
     while True:
         print adc.read()
 
-Controlling Hardware
-====================
+## Controlling Hardware
 
 
-DC motors 
----------
+### DC motors 
 
-See also: https://en.wikipedia.org/wiki/Brushed_DC_electric_motor
+See also: [Wikipedia: Brushed DC Motors](https://en.wikipedia.org/wiki/Brushed_DC_electric_motor)
 
 DC motors turn when there's a voltage across them.  But they need more current than our
 IO Pins can supply, so we need a driver to amplify the signals from the MCU. This could
 be as simple as a single transistor switched from an I/O pin.
 
-.. image:: img/dcmotor.png
-   :width: 50%
+![A DC Motor](img/dcmotor.png)
 
 Then you can turn the motor on and off using the pin::
 
@@ -187,11 +165,9 @@ uses an H-Bridge to do this, but all we need to know is that it has a reverse pi
 
     pin_reverse = machine.Pin(5, machine.Pin.OUT) 
 
-.. image:: img/hbridge.png
-   :width: 50%
+![H Bridge](img/hbridge.png)
 
-Servos
-------
+### Servos
 
 Servos are very handy little units, consisting of a motor, a position sensor and a feedback
 loop.  Rather than telling them which way to turn, you tell them what position you want them
@@ -229,14 +205,13 @@ We can adapt the LED PWM code above::
             pwm.duty(d)
             time.sleep(0.1)
 
-Stepper Motors
---------------
+### Stepper Motors
 
 Stepper motors have multiple separate coils, and unlike DC motors there's no brushes to switch
 the current around and keep things spinning, instead you have to do it yourself.  The two
 separate phases need to be controlled separately.
 
-For more details: https://en.wikipedia.org/wiki/Stepper_motor
+For more details: [Wikipedia: Stepper Motors](https://en.wikipedia.org/wiki/Stepper_motor)
 
 ===== == == == ==
 Phase A+ A- B+ B-
@@ -274,16 +249,14 @@ This means you have more work to do, but you also have more control::
 Wiring
 ~~~~~~
 
-As a demo, I have some `28BYJ-48 4-phase unipolar geared stepper motors
-<http://robocraft.ru/files/datasheet/28BYJ-48.pdf>` and
-`ULN2003A <https://en.wikipedia.org/wiki/ULN2003A>`_  driver boards
+As a demo, I have some [28BYJ-48 4-phase unipolar geared stepper motors](http://robocraft.ru/files/datasheet/28BYJ-48.pdf)
+[ULN2003A](https://en.wikipedia.org/wiki/ULN2003A) driver boards
 to suit.  Despite being designed for 5V TTL logic these work well enough
 on 3.3V CMOS.
 
 Wire NodeMCU GND to V- and NodeMCU Vin to V+, and the logic pins as follows:
 
-.. image:: img/unipolar.png
-   :width: 50%
+![Unipolar Stepper](img/unipolar.png)
 
 ======= ======= ====== === =====
 ESP8266 NodeMCU Driver LED Phase
