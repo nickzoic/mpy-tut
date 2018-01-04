@@ -24,23 +24,19 @@ Please provide your own MicroUSB cable (surely everyone has a pile of these?) an
 
 ## Before the tutorial
 
-There's a bunch of stuff to download which would have been a lot quicker if you'd done it earlier, rather than right now just as 
-the tutorial is starting.  To save a lot of messing around I've bundled the stuff you need up into a single repository ... this one!
-So jump in your time machine and:
+# If you just want to try it out
 
-1. git clone https://github.com/nickzoic/mpy-tut
-2. cd mpy-tut; git submodule update --init --recursive
 
-This downloads a *lot* of content from github.  Most of this is the build environments for ESP32 and ESP8266.
-If you're not interested in building MicroPython from source, or you've left your run a little bit late,
-you could skip this ... the install instructions include how to install from binaries as well.
+# If you want to build MicroPython from source
+
+There's a bunch of stuff to download which would have been a lot quicker if you'd done it earlier, rather than right now just as the tutorial is starting.  
+So jump in your time machine and have a look at the first steps of Building MicroPython below.
 
 ## Tutorial Sections
 
 ### Installing MicroPython
 
-* [Installing for ESP8266](installing-ESP8266.md)
-* [Installing for ESP32](installing-ESP32.md)
+* [Installing for ESP8266 & ESP32](installing.md)
 * [WebREPL and WebPad](webrepl-and-webpad.md)
 
 ### Inputs & Outputs
@@ -50,6 +46,11 @@ you could skip this ... the install instructions include how to install from bin
 ### Networking
 
 ### Multiprocessing
+
+### Building MicroPython
+
+* [Building MicroPython for ESP8266](building-ESP8266.md)
+* [Building MicroPython for ESP32](building-ESP32.md)
 
 ### Reading the Source
 

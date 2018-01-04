@@ -16,3 +16,6 @@
 [submodule "mpy-webpad"]
 	path = mpy-webpad
 	url = https://github.com/nickzoic/mpy-webpad
+[submodule "esptool"]
+	path = esptool
+	url = https://github.com/espressif/esptool
