@@ -2,6 +2,7 @@
 # WebREPL and WebPad
 
 Unfortunately, this only works in ESP8266 at this point.
+WebREPL support for ESP32 is still in progress.
 
 ## WebREPL
 

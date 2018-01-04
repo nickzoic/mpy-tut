@@ -1,0 +1,18 @@
+[submodule "micropython"]
+	path = micropython
+	url = https://github.com/micropython/micropython
+[submodule "esp-idf"]
+	path = esp-idf
+	url = https://github.com/espressif/esp-idf
+[submodule "esp-open-sdk"]
+	path = esp-open-sdk
+	url = https://github.com/pfalcon/esp-open-sdk
+[submodule "webrepl"]
+	path = webrepl
+	url = https://github.com/micropython/webrepl
+[submodule "mpy-utils"]
+	path = mpy-utils
+	url = https://github.com/nickzoic/mpy-utils
+[submodule "mpy-webpad"]
+	path = mpy-webpad
+	url = https://github.com/nickzoic/mpy-webpad
