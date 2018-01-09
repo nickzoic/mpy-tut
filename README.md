@@ -37,7 +37,7 @@ So jump in your time machine and have a look at the first steps of Building Micr
 ### Installing MicroPython
 
 * [Installing for ESP8266 & ESP32](installing.md)
-* [WebREPL and WebPad](webrepl-and-webpad.md)
+* [WebREPL and WebPad (ESP8266 only)](webrepl-and-webpad.md)
 
 ### Inputs & Outputs
 

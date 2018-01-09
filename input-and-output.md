@@ -31,19 +31,19 @@ See https://nodemcu.readthedocs.io/en/master/en/modules/gpio/
 
 NodeMCU | ESP8266 / MicroPython | Notes
 --------|-----------------------|---------------
-D0      GPIO16                  | Limited features, LED on NodeMCU
-D1      GPIO5                   |
-D2      GPIO4                   |
-D3      GPIO0                   | Connected to button
-D4      GPIO2                   |Connected to LED on module
-D5      GPIO14                  | 
-D6      GPIO12                  | 
-D7      GPIO13                  | 
-D8      GPIO15                  | 
-D9      GPIO3                   |UART RXD0 (used for console)
-D10     GPIO1                   |UART TXD0 (used for console)
-D11     GPIO9                   |(used for module flash memory)
-D12     GPIO10                  |(used for module flash memory)
+D0      | GPIO16                | Limited features, LED on NodeMCU
+D1      | GPIO5                 |
+D2      | GPIO4                 |
+D3      | GPIO0                 | Connected to button
+D4      | GPIO2                 | Connected to LED on module
+D5      | GPIO14                | 
+D6      | GPIO12                | 
+D7      | GPIO13                | 
+D8      | GPIO15                | 
+D9      | GPIO3                 | UART RXD0 (used for console)
+D10     | GPIO1                 | UART TXD0 (used for console)
+D11     | GPIO9                 | (used for module flash memory)
+D12     | GPIO10                | (used for module flash memory)
 
 ## MicroPython I/O
 
@@ -56,7 +56,7 @@ want to use that pin.  To configure a pin as a digital output::
      import machine
      pin = machine.Pin(2, machine.Pin.OUT)
 
-On NodeMCU, GPIO2 is connected to an on-board LED, so you should be able to turn
+On the ESP-12 module, GPIO2 is connected to an on-board LED, so you should be able to turn
 the LED on and off::
 
      pin(True)
@@ -104,18 +104,23 @@ and 1023 (always on).  This lets you fade the LED in and out like so::
      pwm.freq(1000)
 
      while True:
-         for d in range(10,90,10):
-             pwm.duty(d/100)
-             time.sleep(0.1)
-         for d in range(90,10,-10):
-             pwm.duty(d/100)
-             time.sleep(0.1)
+         for d in range(0,1023,10):
+             pwm.duty(d)
+             time.sleep(0.01)
+         for d in range(1023,0,-10):
+             pwm.duty(d)
+             time.sleep(0.01)
 
 Yay, it's 'throbby', the microcontroller equivalent of "Hello, World!\n".
 
+On the Witty Cloud, there are also LEDs attached to pins 12, 13 and 15, so you can
+use three PWM channels to make interesting colour effects.
+
 ### Digital Inputs
 
-The NodeMCU also has a button, attached to GPIO0::
+The NodeMCU and Witty Cloud also have a button attached to GPIO0.  This can be used
+to put the device into flash mode when it is reset, but once the device has started
+it can be used as a general purpose input::
 
     import machine
 
@@ -134,8 +139,9 @@ There's also an analog input pin, sadly only one on ESP8266::
     while True:
         print adc.read()
 
-## Controlling Hardware
+On the Witty Cloud this is attached to a Light Dependent Resistor.
 
+## Controlling Hardware
 
 ### DC motors 
 
