@@ -39,9 +39,8 @@ you could skip this ... the install instructions include how to install from bin
 
 ### Installing MicroPython
 
-* [Installing for ESP8266](installing-ESP8266.md)
-* [Installing for ESP32](installing-ESP32.md)
-* [WebREPL and WebPad](webrepl-and-webpad.md)
+* [Installing ESP8266 / ESP32](installing.md)
+* [WebREPL and WebPad (ESP8266 only)](webrepl-and-webpad.md)
 
 ### Inputs & Outputs
 
