@@ -5,6 +5,6 @@ show_downloads: false
 defaults:
   -
     scope:
-      path: "*.md"
+      path: "tut"
     values:
       layout: "page"

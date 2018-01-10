@@ -21,7 +21,7 @@
 
 	<ul>
 	  {% for page in site.pages | sort:"title" %}
-	  <li><a href="{{ page.url }}">{{ page.title }}</a></li> {{ page.layout }}
+	  <li><a href="{{ page.url }}">{{ page.title }}</a> {{ page.layout }}</li>
 	  {% endfor %}
 	</ul>
 
