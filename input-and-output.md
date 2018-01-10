@@ -27,7 +27,6 @@ It separates into two parts, the lower part has a USB to Serial converter and an
 auto-reset circuit, the upper part has an ESP-12F module and a 5V to 3.3V regulator.
 The upper USB port is only usable for power, not data.
 
-
 ### NodeMCU (ESP8266)
 
 Note that if you're using a NodeMCU board, the pin numbers printed on the board
@@ -49,6 +48,9 @@ D9      | GPIO3                 | UART RXD0 (used for console)
 D10     | GPIO1                 | UART TXD0 (used for console)
 D11     | GPIO9                 | (used for module flash memory)
 D12     | GPIO10                | (used for module flash memory)
+
+### LoliBot
+
 
 ## MicroPython I/O
 
@@ -148,3 +150,65 @@ There's also an analog input pin, sadly only one on ESP8266::
         print adc.read()
 
 On the Witty Cloud this is attached to a Light Dependent Resistor.
+
+### NeoPixels
+
+"NeoPixels" is a name given to a range of chips which integrate coloured LEDs with an onboard controller.
+There's a tiny controller in each pixel, and you can daisy chain them together to control many pixels from
+a single output line.  There are different versions of these chips:
+
+* WS2812B
+* APA106
+
+To control them from MicroPython, use the `neopixel` library:
+
+    import neopixel
+    import machine
+    
+    pix = neopixel.NeoPixel(machine.Pin(2), 3)
+    pix[0] = (255,0,0)
+    pix[1] = (0,255,0)
+    pix[2] = (0,0,255)
+    pix.update()
+
+NeoPixels can be purchased from Ebay (etc) preassembled into ribbons, rings, grids and other shapes.
+Controlling a handful of pixels may seem like a silly thing to do when you're used to having millions of
+pixels at your disposal, but it can be a lot of fun.
+
+### I2C
+
+I2C is a shared serial bus which allows your microcontroller to communicate with multiple 
+peripheral devices using a single pin.  
+
+It is part of the `machine` library
+
+    import machine
+    import time
+
+    i2c = machine.i2c(freq=400000,scl=machine.Pin(22),sda=machine.Pin(21))
+    i2c.writeto_mem(104,107,bytes([0]))
+    
+    while True:
+        print("%6d %6d %6d" % struct.unpack(">3h", i2c.readfrom_mem(104,0x3b,6))
+        time.sleep(1)
+
+The I2C library is still quite low level, and using it involves a lot of reading of 
+datasheets.  However, it is quite easy to wrap I2C functions into small library functions.
+
+LoliBot features an MPU-9250 accelerometer / gyrometer on pins 18/19.
+
+# EXERCISES
+
+## Witty Cloud
+
+1. Experiment with getting the RGB LED to make interesting colours.
+
+2. Animate a rainbow effect by setting RGB values, pausing a moment and then changing them.
+
+3. Work out how to read the button and analog inputs.
+
+4. Have your LED output respond to user input.
+
+5. Detect the presence of an object near the board by modulating the light output and detecting
+   changes in light input
+

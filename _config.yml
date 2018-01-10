@@ -1,1 +1,4 @@
 theme: jekyll-theme-minimal
+title: MicroPython Tutorial
+description: Getting Started with MicroPython
+show_downloads: false
