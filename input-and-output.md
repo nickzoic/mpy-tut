@@ -67,6 +67,9 @@ the LED on and off::
      pin(True)
      pin(False)
 
+Note that it is connected backwards: to turn the LED *on*, set the pin value to False and to 
+turn it *off* set the pin value to True.
+
 Of course you can do this in a loop to get 'blinky', the microcontroller equivalent
 of `print('hello world')`:
 
