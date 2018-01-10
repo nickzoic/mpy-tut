@@ -6,5 +6,5 @@ defaults:
   -
     scope:
       path: "*.md"
-    value:
+    values:
       layout: "page"
