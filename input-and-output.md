@@ -19,9 +19,14 @@ ESP8266 | Connection
 GPIO0   | Flash button
 GPIO2   | Module LED
 GPIO4   | Pushbutton
-GPIO12  | Blue LED
-GPIO13  | Green LED
-GPIO15  | Red LED
+GPIO12  | RGB LED (Blue)
+GPIO13  | RGB LED (Green)
+GPIO15  | RGB LED (Red)
+
+It separates into two parts, the lower part has a USB to Serial converter and an
+auto-reset circuit, the upper part has an ESP-12F module and a 5V to 3.3V regulator.
+The upper USB port is only usable for power, not data.
+
 
 ### NodeMCU (ESP8266)
 
@@ -63,7 +68,7 @@ the LED on and off::
      pin(False)
 
 Of course you can do this in a loop to get 'blinky', the microcontroller equivalent
-of 'hello world'::
+of `print('hello world')`:
 
      import machine
      import time
@@ -84,7 +89,7 @@ and it lets you set the proportion of the time the LED is on, called the 'duty c
 
 ![Duty Cycle](img/dutycycle.png)
 
-To configure a pin as PWM, wrap the `machine.Pin` object in a `machine.PWM` object::
+To configure a pin as PWM, wrap the `machine.Pin` object in a `machine.PWM` object:
 
     import machine
     pin = machine.Pin(2, machine.Pin.OUT)
@@ -94,7 +99,7 @@ To configure a pin as PWM, wrap the `machine.Pin` object in a `machine.PWM` obje
     pwm.duty(512)
 
 `freq` sets the frequency (in Hz) and `duty` sets the duty cycle between 0 (always off)
-and 1023 (always on).  This lets you fade the LED in and out like so::
+and 1023 (always on).  This lets you fade the LED in and out like so:
 
      import machine
      import time
@@ -104,14 +109,14 @@ and 1023 (always on).  This lets you fade the LED in and out like so::
      pwm.freq(1000)
 
      while True:
-         for d in range(0,1023,10):
+         for d in range(0,1024,8):
              pwm.duty(d)
              time.sleep(0.01)
-         for d in range(1023,0,-10):
+         for d in range(1024,0,-8):
              pwm.duty(d)
              time.sleep(0.01)
 
-Yay, it's 'throbby', the microcontroller equivalent of "Hello, World!\n".
+Yay, it's 'throbby', the microcontroller equivalent of `print("Hello, World!\n")`.
 
 On the Witty Cloud, there are also LEDs attached to pins 12, 13 and 15, so you can
 use three PWM channels to make interesting colour effects.
