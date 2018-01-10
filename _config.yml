@@ -2,3 +2,9 @@ theme: jekyll-theme-minimal
 title: MicroPython Tutorial
 description: Getting Started with MicroPython
 show_downloads: false
+defaults:
+  -
+    scope:
+      path: "*.md"
+    value:
+      layout: "page"
