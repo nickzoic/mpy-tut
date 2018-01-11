@@ -100,9 +100,32 @@ Use the port name you worked out in the previous step
 
 You can now chat to Python at the REPL.
 
+## Setting up WiFi
 
+There's plenty of other microcontrollers around: the thing which makes the ESP microcontrollers
+a bit special is their built-in support for WiFi networks.
 
+Micropython exposes this via the 'network' library.  To get your device talking on the network,
+do the following
 
+    import network
+    w = network.WLAN()
+    w.active(True)
+    w.connect('AP','Password')
+    w.ifconfig()
 
+That last command returns a tuple of (IP address, netmask, gateway address, DNS address).
+Note down your IP address ... we'll use it later.
 
+# EXERCISES
+
+* Load the latest MicroPython firmware onto your device.
+
+* Configure it onto the conference network (details TBD)
+
+* Check that you can ping it from your laptop.  You may need to reconnect your
+  laptop to the same SSID / Password as you used for the device. 
+
+* Assuming you're using an ESP8266 device, set up WebREPL as per the 
+  [WebREPL and WebPad](webrepl-and-webpad.md) page.
 

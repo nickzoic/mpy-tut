@@ -104,7 +104,10 @@ To configure a pin as PWM, wrap the `machine.Pin` object in a `machine.PWM` obje
     pwm.duty(512)
 
 `freq` sets the frequency (in Hz) and `duty` sets the duty cycle between 0 (always off)
-and 1023 (always on).  This lets you fade the LED in and out like so:
+and 1023 (always on).  Beyond about 30Hz, the LED will no longer appear to be flashing,
+instead it will be changing in perceived brightness.
+
+This lets you fade the LED in and out like so:
 
      import machine
      import time
@@ -153,10 +156,11 @@ On the Witty Cloud this is attached to a Light Dependent Resistor.
 
 ### NeoPixels
 
-"NeoPixels" is a name given to a range of chips which integrate coloured LEDs with an onboard controller.
-There's a tiny controller in each pixel, and you can daisy chain them together to control many pixels from
-a single output line.  There are different versions of these chips:
+"NeoPixels" is a name given to a family of coloured LEDs with an onboard controller.
+There's a tiny controller in each pixel, and you can daisy chain them together to
+control many pixels from a single output line.  There are different versions of these chips:
 
+* WS2812
 * WS2812B
 * APA106
 

@@ -14,14 +14,11 @@ you'll see the text also appearing in the serial REPL.
 
    Or download it using wget:
 
-```
     wget -r -nH http://micropython.org/webrepl/
-```
 
 2. Connect to the serial REPL, set up WiFi and work out 
    your new IP address, then set up WebREPL:
 
-```
     import network
     w = network.WLAN()
     w.active(True)
@@ -30,7 +27,6 @@ you'll see the text also appearing in the serial REPL.
     w.ifconfig()
 
     import webrepl_setup
-```
 
    Alternatively, if your device is set up as an AP, you can connect to it
    and point WebREPL at ws://192.168.4.1:8266/ and it will hopefully ask
