@@ -1,6 +1,6 @@
 # Installing MicroPython for ESP8266 & ESP32
 
-## Download Firmware
+## 1. Download Firmware
 
 Download prebuilt firmware from micropython.org:
 
@@ -12,9 +12,10 @@ Or if you cloned this repo, it's already here:
 *  [ESP8266](bin/esp8266-20180104-v1.9.3-238-g42c4dd09.bin)
 *  [ESP32](bin/esp32-20180104-v1.9.3-238-g42c4dd09.bin)
 
-## Install esptool
 
-You need at least Version 2 of the esptool utility.
+## 2. Install esptool
+
+You need at least Version 2 of the esptool utility, and a USB port.
 
 ### Linux
 
@@ -35,9 +36,7 @@ And then install esptool:
     esptool.py version
 
 Your serial device is almost certainly /dev/ttyUSB0 or /dev/ttyACM0 or something like that.
-When you find it, set up an environment variable so we don't have to keep typing it:
-
-    export PORT=/dev/ttyUSB0
+    
 
 ### Mac OSX (10.11)
 
@@ -57,30 +56,54 @@ If you can't find any devices which look like that, you need to install third-pa
 
 * [FTDI VCP Drivers](http://www.ftdichip.com/Drivers/VCP.htm)
 * [Silicon Labs VCP Drivers](http://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers)
+* [CH340 VCP Drivers](http://www.wch.cn/download/CH341SER_MAC_ZIP.html)
+
 
 ### Windows 10
 
-Install Python 3 from https://www.python.org/downloads/windows/
-(Select yes, add it to your path)
+Download Python 3.6 from https://www.python.org/downloads/windows/
 
-Open a command shell (CMD.EXE, or bash subsystem):
+Run the installer, make sure "Add Python 3.6 to PATH" is selected (at the bottom) 
+and then click Install Now.
+
+![Installing Python 3.6 on Windows 10](img/installing-python-windows.png)
+
+Open a command shell (CMD.EXE, or BASH.EXE):
 
     pip install --upgrade esptool
 
-Your device is called COM3 or COM4 or something along those lines.
-When you find it, set up an environment variable so we don't have to keep typing it:
+Your device is called COM3 or COM4 or something along those lines.  Have a look in
+Device Manager under "Ports (COM & LPT)" for a familiar name.
 
-    set PORT=COM3
-
-    esptool.py --port COM3 --baud 460800 write_flash 0 combined.bin
+![USB to Serial Device in Windows](img/usb-to-serial-windows.png)
 
 If you can't find any devices which look like that, you need to install third-party
 "VCP" (Virtual COM Port) drivers for your device.  Typical locations:
 
 * [FTDI VCP Drivers](http://www.ftdichip.com/Drivers/VCP.htm)
 * [Silicon Labs VCP Drivers](http://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers)
+* [CH340 VCP Drivers](http://www.wch.cn/download/CH341SER_EXE.html)
 
-## Writing Firmware
+
+## 3. Writing Firmware
+
+Once you've identified your serial port, you need to upload the firmware image you downloaded
+in step 1.  In the commands below, `$PORT` is the port you identified in step 2.
+
+First check that you can communicate with your device:
+
+    esptool.py --port $PORT --baud 115200 chip_id
+
+Which should return something like:
+
+    esptool.py v2.2
+    Connecting....
+    Detected chip type... ESP8266
+    Chip is ESP8266EX
+    Uploading stub...
+    Stub running...
+    Chip ID: 0x00531b1c
+    Hard resetting...
 
 For esp8266:
 
@@ -90,15 +113,39 @@ For esp32 (note: the offset is different):
 
     esptool.py --port $PORT --baud 115200 write_flash 0x1000 bin/esp32-20180104-v1.9.3-238-g42c4dd09.bin
 
+Note the different offset used for ESP32.
+You can try faster baud rates if you wish (eg: 230400, 460800), the firmware will load more quickly
+but reliability varies.
+
+
 
 ## Connecting to REPL
+
+### Linux and Mac OSX
 
 Use 'miniterm.py' which is part of pyserial, and installed at the same time as esptool.
 Use the port name you worked out in the previous step
 
-    miniterm.py $PORT 115200
+    miniterm.py $PORT 115200 --raw
 
 You can now chat to Python at the REPL.
+
+### Windows
+
+`miniterm.py` is available and works at a pinch, but its terminal handling is not good.
+You may be able to put up with it long enough to get WebREPL up and going (see below).
+
+Otherwise, I've successfully used 'PuTTY' which is available from http://chiark.greenend.org.uk/~sgtatham/putty/latest.html 
+Run PuTTY, select 'Connection' 'Serial' and set the serial line to COM3, the speed to 115200 and Flow Control to
+None.
+
+![Putty Setup](putty-setup-1.png)
+
+Go back up to "Session" on the lefthand menu, check "Serial" on the right, then click "Open".
+Yes, the user interface leaves a lot to be desired.
+
+![Putty Setup 2](putty-setup-2.png)
+
 
 ## Setting up WiFi
 
