@@ -80,6 +80,3 @@ the I/O pins from MicroPython.
 5. Detect the presence of an object near the board by detecting
    changes in light level.  How can you reduce the effects of ambient light?
 
-
-
-

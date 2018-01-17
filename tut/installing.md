@@ -24,7 +24,11 @@ so you're better off installing from pypi.  The vendor package is generally inst
 as `/usr/bin/esptool`, whereas the pypi version is generally installed as 
 `/usr/local/bin/esptool.py`.  
 
-From a terminal, first add yourself to the group 'dialout':
+Plug the board in to a USB port, and check for a device called `/dev/ttyUSB0` or
+`/dev/ttyACM0` or similar.  If all else fails, check `dmesg` for USB events.
+
+From a terminal, first add yourself to the group 'dialout' (or whatever group owns the
+device):
 
     sudo addgroup $USER dialout
     exec newgrp dialout
@@ -35,8 +39,6 @@ And then install esptool:
     sudo pip install esptool
     esptool.py version
 
-Your serial device is almost certainly /dev/ttyUSB0 or /dev/ttyACM0 or something like that.
-    
 
 ### Mac OSX (10.11)
 
@@ -57,6 +59,8 @@ If you can't find any devices which look like that, you need to install third-pa
 * [FTDI VCP Drivers](http://www.ftdichip.com/Drivers/VCP.htm)
 * [Silicon Labs VCP Drivers](http://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers)
 * [CH340 VCP Drivers](http://www.wch.cn/download/CH341SER_MAC_ZIP.html)
+
+Once you've done that, the device should appear in `/dev`.
 
 
 ### Windows 10
@@ -85,7 +89,7 @@ If you can't find any devices which look like that, you need to install third-pa
 * [CH340 VCP Drivers](http://www.wch.cn/download/CH341SER_EXE.html)
 
 
-## 3. Writing Firmware
+## 3. Uploading Firmware
 
 Once you've identified your serial port, you need to upload the firmware image you downloaded
 in step 1.  In the commands below, `$PORT` is the port you identified in step 2.
@@ -118,13 +122,13 @@ You can try faster baud rates if you wish (eg: 230400, 460800), the firmware wil
 but reliability varies.
 
 
-
 ## Connecting to REPL
 
 ### Linux and Mac OSX
 
 Use 'miniterm.py' which is part of pyserial, and installed at the same time as esptool.
-Use the port name you worked out in the previous step
+Use the port name you worked out in the previous step.  MicroPython standard builds use
+115200 baud:
 
     miniterm.py $PORT 115200 --raw
 
@@ -133,16 +137,24 @@ You can now chat to Python at the REPL.
 ### Windows
 
 `miniterm.py` is available and works at a pinch, but its terminal handling is not good.
-You may be able to put up with it long enough to get WebREPL up and going (see below).
+If you have the latest linux subsystem for Windows you may be able to use the instructions
+above (look for /dev/ttyS3).
 
-Otherwise, I've successfully used 'PuTTY' which is available from http://chiark.greenend.org.uk/~sgtatham/putty/latest.html 
-Run PuTTY, select 'Connection' 'Serial' and set the serial line to COM3, the speed to 115200 and Flow Control to
-None.
+If you're configuring an ESP8266, you may be able to put up with it long enough to get
+WebREPL up and going (see below).
+
+Otherwise, I've successfully used 'PuTTY' which is available from
+http://chiark.greenend.org.uk/~sgtatham/putty/latest.html 
+
+Run PuTTY, select 'Connection' 'Serial' and set the serial line to COM3, the speed to
+115200 and Flow Control to None:
 
 ![Putty Setup](putty-setup-1.png)
 
 Go back up to "Session" on the lefthand menu, check "Serial" on the right, then click "Open".
-Yes, the user interface leaves a lot to be desired.
+You can then give your session a name 'com3' and click Save so you don't have to do that 
+all again next time.
+Yes, the user interface leaves a lot to be desired:
 
 ![Putty Setup 2](putty-setup-2.png)
 

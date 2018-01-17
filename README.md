@@ -28,11 +28,19 @@ Please provide your own MicroUSB cable (surely everyone has a pile of these?) an
 
 ### If you just want to try it out
 
+Clone this repo, install Python 3.6 and esptool (see [Installing](installing.md)),
+if you have your own hardware confirm that you can see the serial device at least.
 
 ### If you want to build MicroPython from source
 
-There's a bunch of stuff to download which would have been a lot quicker if you'd done it earlier, rather than right now just as the tutorial is starting.  
-So jump in your time machine and have a look at the first steps of Building MicroPython below.
+For ESP8266, check out the build instructions at
+https://github.com/micropython/micropython/blob/master/ports/esp8266/README.md
+and try and follow along.  There's quite a lot to download, especially during the
+process of installing https://github.com/pfalcon/esp-open-sdk
+
+For ESP32 the build process is a little simpler, but check out
+https://github.com/micropython/micropython/blob/master/ports/esp32/README.md
+and follow along.
 
 ## Tutorial Sections
 
@@ -41,6 +49,10 @@ So jump in your time machine and have a look at the first steps of Building Micr
 If you picked up a Witty Cloud module for the tutorial, start here:
 
 * [the Witty Cloud (ESP8266)](tut/witty-cloud.md)
+
+If you were at the Open Hardware MiniConf and got a LoliBot, start here:
+
+* [MicroPython for OHMC LoliBot](tut/ohmc-lolibot.md)
 
 ### Installing MicroPython
 
@@ -57,9 +69,6 @@ If you picked up a Witty Cloud module for the tutorial, start here:
 ### Multiprocessing
 
 ### Building MicroPython
-
-* [Building MicroPython for ESP8266](tut/building-ESP8266.md)
-* [Building MicroPython for ESP32](tut/building-ESP32.md)
 
 ### Reading the Source
 
