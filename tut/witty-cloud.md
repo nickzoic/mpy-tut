@@ -47,11 +47,11 @@ The upper board
 can be removed from the lower board and used in your projects directly.
 If you want to use the ADC for something other than a light sensor, it is easy to
 desolder or cut off the LDR.
+It is, annoyingly, slightly too wide to use in a standard mini breadboard,
+but works well across two breadboards.
 
 The lower board can also be used, with some jumper wires, as a generic ESP8266
 and ESP32 programmer.
-It is, annoyingly, slightly too wide to use in a standard mini breadboard,
-but works well across two breadboards.
 
 ## Loading Firmware
 
@@ -78,7 +78,7 @@ the I/O pins from MicroPython.
    depend on the intensity of light falling on the LDR.
 
 5. Detect the presence of an object near the board by detecting
-   changes in light input.  How can you reduce the effects of ambient light?
+   changes in light level.  How can you reduce the effects of ambient light?
 
 
 
