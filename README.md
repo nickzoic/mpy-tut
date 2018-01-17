@@ -36,6 +36,12 @@ So jump in your time machine and have a look at the first steps of Building Micr
 
 ## Tutorial Sections
 
+### Specific Hardware
+
+If you picked up a Witty Cloud module for the tutorial, start here:
+
+* [the Witty Cloud (ESP8266)](tut/witty-cloud.md)
+
 ### Installing MicroPython
 
 * [Installing for ESP8266 & ESP32](tut/installing.md)
