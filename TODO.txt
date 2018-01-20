@@ -4,7 +4,6 @@
 
 * installing.md
 
-  * get images off win10 virtual
   * check mac instructions still work
 
 * libraries.md
