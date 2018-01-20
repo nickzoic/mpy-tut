@@ -141,7 +141,7 @@ If you have the latest linux subsystem for Windows you may be able to use the in
 above (look for /dev/ttyS3).
 
 If you're configuring an ESP8266, you may be able to put up with it long enough to get
-WebREPL up and going (see below).
+WebREPL up and going (see [WebREPL and WebPad](webrepl-and-webpad.md))
 
 Otherwise, I've successfully used 'PuTTY' which is available from
 http://chiark.greenend.org.uk/~sgtatham/putty/latest.html 

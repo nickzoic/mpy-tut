@@ -4,11 +4,22 @@ This is the notes for the upcoming
 [Getting Started with MicroPython Tutorial at LinuxConfAU 2018](https://rego.linux.conf.au/schedule/presentation/42/)
 which aims to introduce people to the very basics of [MicroPython](https://micropython.org/) in an easy and accessible way.
 
-There's a slightly more nicely formatted version of these pages availabe at [mpy-tut.zoic.org](http://mpy-tut.zoic.org/) ... 
-
 It is based on material developed at [MicroPython Meetup](https://www.meetup.com/MicroPython-Meetup/).
 This content is written by [Nick Moore](http://nick.zoic.org/) and licensed [CC0](https://creativecommons.org/publicdomain/zero/1.0/)
 Please feel free to use it for whatever purpose.
+
+## Running Sheet
+
+(approximate)
+
+10:45 | Introduction (Nick Moore / Damien George)
+10:55 | Hands on: Installing, the REPL, I/O
+11:30 | Short Break
+11:40 | Hands on: Networks, Libraries, Building from source
+12:15 | Developing on MicroPython (Nick Moore)
+12:25 | Lunch / More hacking
+
+[Nick's slides](http://nick.zoic.org/talk/lca2018/getting-started-with-micropython/)
 
 ## The tutorial: what you need to know
 
@@ -54,26 +65,28 @@ If you were at the Open Hardware MiniConf and got a LoliBot, start here:
 
 * [MicroPython for OHMC LoliBot](tut/ohmc-lolibot.md)
 
-### Installing MicroPython
+Otherwise, there's more general stuff in the following sections:
 
 * [Installing for ESP8266 & ESP32](tut/installing.md)
 * [WebREPL and WebPad (ESP8266 only)](tut/webrepl-and-webpad.md)
+* [MicroPython Libraries](tut/libraries.md)
 
-### Inputs & Outputs
+### Inputs and Outputs
 
 * [Input and Output](tut/input-and-output.md)
 * [Motors](tut/motors.md)
 
 ### Networking
 
-### Multiprocessing
+* [Networking](tut/network.md)
 
 ### Building MicroPython
+
+* [Building](tut/building.md)
 
 ### Reading the Source
 
 ## Resources
 
-
-
-
+There's a tutorial in the official docs at
+https://docs.micropython.org/en/latest/esp8266/esp8266/tutorial/index.html
