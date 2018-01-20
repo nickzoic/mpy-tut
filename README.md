@@ -12,6 +12,7 @@ Please feel free to use it for whatever purpose.
 
 (approximate)
 
+Time  |
 ------|-----------------------------------------------------
 10:45 | Introduction (Nick Moore / Damien George)
 10:55 | Hands on: Installing, the REPL, I/O
