@@ -1,0 +1,31 @@
+* input-and-output.md
+
+  * update example pins to suit lolibot.
+
+* installing.md
+
+  * get images off win10 virtual
+  * check mac instructions still work
+
+* libraries.md
+
+  * micropython-lib
+  * upip
+  * modules dir
+
+* network.md
+
+  * HTTP client
+  * HTTP server
+
+* ohmc-lolibot.md
+
+  done!
+
+* webrepl-and-webpad.md
+
+  done!
+
+* witty-cloud.md
+
+  done!

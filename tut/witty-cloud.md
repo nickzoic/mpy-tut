@@ -5,8 +5,7 @@
 The Witty Cloud is a small, cheap development board available from many Ebay / AliExpress 
 sellers.  It consists of two boards sandwiched together
 
-![Witty Cloud Photo 1](img/witty-cloud-1.jpg)
-![Witty Cloud Photo 2](img/witty-cloud-2.jpg)
+![Witty Cloud Photo](img/witty-cloud-1.jpg)
 
 It is based around an ESP-12F module, which contains an ESP8266 processor, 4MB of flash memory,
 an oscillator and a small blue LED.
