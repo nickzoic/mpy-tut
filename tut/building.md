@@ -1,9 +1,16 @@
 # Building MicroPython for ESP32
 
-1. git clone https://github.com/nickzoic/mpy-tut
-2. cd mpy-tut; git submodule update --init --recursive
+## ESP8266
 
-This downloads a *lot* of content from github.  Most of this is the build environments for ESP32 and ESP8266.
-If you're not interested in building MicroPython from source, or you've left your run a little bit late,
-you could skip this ... the install instructions include how to install from binaries as well.
+For ESP8266, check out the build instructions at
+https://github.com/micropython/micropython/blob/master/ports/esp8266/README.md
+and try and follow along.  There's quite a lot to download, especially during the
+process of installing https://github.com/pfalcon/esp-open-sdk
+
+
+## ESP32
+
+For ESP32 the build process is a little simpler, but check out
+https://github.com/micropython/micropython/blob/master/ports/esp32/README.md
+and follow along.
 

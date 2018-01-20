@@ -62,7 +62,7 @@ Check out [Libraries](libraries.html) for details of how to install these,
 but for the moment I've built images for the ESP8266 and ESP32 which
 have a selection of libraries included.
 
-## HTTP Client: requests
+### HTTP Client: requests
 
 
 ### HTTP Server: picoweb
@@ -89,4 +89,6 @@ packages such as mosquitto.
 
 2. Send some messages, and check they're arriving at the mosquitto subscriber
 
-3. Write a MQTT listener 
+3. Write a MQTT subscriber which receives messages from the broker and does
+   something interesting.  You can either use mosquitto\_pub to send messages,
+   or team up with someone else to communicate between your devices. 

@@ -1,7 +1,9 @@
 # MicroPython on the OHMC LoliBot
 
-The [Open Hardware MiniConf](http://www.openhardwareconf.org/wiki/OHMC2018) will be constructing [LoliBot](https://github.com/CCHS-Melbourne/LoliBot)
-robots based on the ESP32 and capable of running MicroPython, so if you're going to that as well bring yours along.
+The [Open Hardware MiniConf](http://www.openhardwareconf.org/wiki/OHMC2018)
+will be constructing [LoliBot](https://github.com/CCHS-Melbourne/LoliBot)
+robots based on the ESP32 and capable of running MicroPython, so if you're
+going to that as well bring yours along.
 
 ## LoliBot Hardware
 
@@ -55,7 +57,8 @@ control motors.
 The LoliBot has a chain of three Neopixels on pin 2, plus two H-bridge drivers
 for the wheel motors (on pins 15/13 and 5/23) and a "kicker" servo on pin 16.
 
-1. Experiment with getting the Neopixels to make interesting colours (using the neopixel library)
+1. Experiment with getting the Neopixels to make interesting colours
+   (using the neopixel library)
 
 2. Animate a rainbow effect by setting RGB values, pausing a moment and then changing them.
 
@@ -69,6 +72,4 @@ for the wheel motors (on pins 15/13 and 5/23) and a "kicker" servo on pin 16.
 
 6. Attach some pieces of wire to pins IO12 and IO14 and experiment
    with the machine.TouchPad interface
-
-
 
