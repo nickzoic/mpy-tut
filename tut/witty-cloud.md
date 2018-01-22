@@ -64,7 +64,7 @@ the device and load the MicroPython firmware from Linux, OSX and Windows.
 
 ## Exercises: Using I/O
 
-See [Inputs and Outputs](inputs-and-outputs.md) for details of how to control
+See [Inputs and Outputs](input-and-output.md) for details of how to control
 the I/O pins from MicroPython.
 
 1. Experiment with getting the RGB LED to make interesting colours.
