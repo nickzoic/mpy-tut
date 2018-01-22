@@ -18,8 +18,10 @@ want to use that pin.  To configure a pin as a digital output::
 
 ### Example: ESP-12
 
+**Note: On the LoLin32Lite, used in the LoliBot, there's an equivalent blue LED on pin 22**
+
 On the ESP-12 module, GPIO2 is connected to an on-board LED, so you should be able to turn
-the LED on and off (on the LoLin32Lite, the equivalent is pin 22)::
+the LED on and off:
 
      pin(True)
      pin(False)
@@ -83,6 +85,9 @@ Yay, it's 'throbby', the microcontroller equivalent of `print("Hello, World!\n")
 
 ## Digital Inputs
 
+**Note: There isn't an equivalent button on the LoliBot, as the button on the LoLin32Lite
+resets the CPU!  But this should work with the reflectance sensor on GPIO4**
+
 Most ESP8266 development boards have a button attached to GPIO0.  This can be used
 to put the device into flash mode when it is reset, but once the device has started
 it can be used as a general purpose input::
@@ -95,6 +100,8 @@ it can be used as a general purpose input::
         else: print "False" 
         
 ## Analog Inputs
+
+**Note: There's isn't really equivalent hardware on the LoliBot, sorry**
 
 There's also an analog input pin, sadly only one on ESP8266::
 
@@ -120,9 +127,12 @@ across all the channels.
 
 ## NeoPixels
 
+**Note: On the LoliBot, there's a string of three APA106 NeoPixels on GPIO2.**
+
 "NeoPixels" is a name given to a family of coloured LEDs with an onboard controller.
 There's a tiny controller in each pixel, and you can daisy chain them together to
-control many pixels from a single output line.  There are different versions of these chips:
+control many pixels from a single output line.  There are several different versions
+of these chips, including RGB and RGBW varieties.  Some examples:
 
 * WS2812
 * WS2812B
@@ -145,6 +155,9 @@ pixels at your disposal, but it can be a lot of fun.
 
 ## I2C
 
+**Note: LoliBot features an MPU-9250 accelerometer / gyrometer on pins 18 (SDA)/19 (SCL).
+It should work with the code below.**
+
 I2C is a shared serial bus which allows your microcontroller to communicate with multiple 
 peripheral devices using a single pin.  
 
@@ -153,7 +166,7 @@ It is part of the `machine` library
     import machine
     import time
 
-    i2c = machine.i2c(freq=400000,scl=machine.Pin(22),sda=machine.Pin(21))
+    i2c = machine.i2c(freq=400000,scl=machine.Pin(19),sda=machine.Pin(18))
     i2c.writeto_mem(104,107,bytes([0]))
     
     while True:
@@ -162,5 +175,6 @@ It is part of the `machine` library
 
 The I2C library is still quite low level, and using it involves a lot of reading of 
 datasheets.  However, it is quite easy to wrap I2C functions into small library functions.
+For the [BuzzConf Rocket Surgery](http://nick.zoic.org/art/rocket-surgery-airborne-iot-telemetry-buzzconf)
+project [we wrapped this sensor up with a very small library](https://github.com/nodebotsau/water-rocket/blob/master/rocket_package/lib/mpu9250.py)
 
-LoliBot features an MPU-9250 accelerometer / gyrometer on pins 18/19.

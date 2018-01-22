@@ -1,7 +1,3 @@
-* input-and-output.md
-
-  * update example pins to suit lolibot.
-
 * installing.md
 
   * check mac instructions still work
@@ -16,15 +12,3 @@
 
   * HTTP client
   * HTTP server
-
-* ohmc-lolibot.md
-
-  done!
-
-* webrepl-and-webpad.md
-
-  done!
-
-* witty-cloud.md
-
-  done!
