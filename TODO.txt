@@ -2,12 +2,6 @@
 
   * check mac instructions still work
 
-* libraries.md
-
-  * micropython-lib
-  * upip
-  * modules dir
-
 * network.md
 
   * HTTP client
