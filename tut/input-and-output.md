@@ -19,7 +19,7 @@ want to use that pin.  To configure a pin as a digital output::
 ### Example: ESP-12
 
 On the ESP-12 module, GPIO2 is connected to an on-board LED, so you should be able to turn
-the LED on and off::
+the LED on and off (on the LoLin32Lite, the equivalent is pin 22)::
 
      pin(True)
      pin(False)
