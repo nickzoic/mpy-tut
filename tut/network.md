@@ -64,8 +64,18 @@ have a selection of libraries included.
 
 ### HTTP Client: requests
 
+There's a small subset of the requests library available as 
+'micropython-urequests' which implements part of HTTP.  There's a much 
+more useful and complete library 'micropython-http.client' which is usable on the
+ESP32 but it pulls in too many dependencies to be useful on the ESP8266.
 
 ### HTTP Server: picoweb
+
+Picoweb is a small web server on top of uasyncio.  It is at https://github.com/pfalcon/picoweb/
+
+There's also a few efforts to put web server frameworks with purely asyncronous 
+operations: perhaps have a look at https://github.com/nickzoic/pycose but it's a work
+in progress.
 
 ### MQTT Client: umqtt.simple
 
