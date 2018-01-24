@@ -58,7 +58,7 @@ Writing our own client and server every time would be tedious at best,
 and protocols such as HTTP are not as simple as they may at first seem.
 Let's not do that.  There are several options for libraries.
 
-Check out [Libraries](libraries.html) for details of how to install these,
+Check out [Libraries](libraries.md) for details of how to install these,
 but for the moment I've built images for the ESP8266 and ESP32 which
 have a selection of libraries included.
 
