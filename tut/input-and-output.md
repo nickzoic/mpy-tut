@@ -147,7 +147,7 @@ To control them from MicroPython, use the `neopixel` library:
     pix[0] = (255,0,0)
     pix[1] = (0,255,0)
     pix[2] = (0,0,255)
-    pix.update()
+    pix.write()
 
 NeoPixels can be purchased from Ebay (etc) preassembled into ribbons, rings, grids and other shapes.
 Controlling a handful of pixels may seem like a silly thing to do when you're used to having millions of
