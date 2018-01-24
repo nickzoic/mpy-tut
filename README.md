@@ -48,12 +48,12 @@ or from one of the many vendors out there, you're welcome to bring that along.
 
 ### If you just want to try it out
 
-Clone this repo, install Python 3.6 and esptool (see [Installing](installing.md)),
+Clone this repo, install Python 3.6 and esptool (see [Installing](tut/installing.md)),
 if you have your own hardware confirm that you can see the serial device at least.
 
 ### If you want to build MicroPython from source
 
-As above, plus read [Building](building.md) and follow along until you can't follow any 
+As above, plus read [Building](tut/building.md) and follow along until you can't follow any 
 more.  Downloading the toolchain and SDKs ahead of time will save a lot of time on
 the day.
 

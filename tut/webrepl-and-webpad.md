@@ -24,7 +24,7 @@ you'll see the text also appearing in the serial REPL.
     w = network.WLAN()
     w.active(True)
     w.scan()
-    w.config("yourAP", "yourPassword")
+    w.connect("yourAP", "yourPassword")
     w.ifconfig()
 
     import webrepl_setup
