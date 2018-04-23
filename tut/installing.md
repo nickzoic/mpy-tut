@@ -170,14 +170,14 @@ http://chiark.greenend.org.uk/~sgtatham/putty/latest.html
 Run PuTTY, select 'Connection' 'Serial' and set the serial line to the previously identified COM port number (e.g. COM3), the speed to
 115200 and Flow Control to None:
 
-![Putty Setup](putty-setup-1.png)
+![Putty Setup](img/putty-setup-1.png)
 
 Go back up to "Session" on the lefthand menu, check "Serial" on the right, then click "Open".
 You can then give your session a name 'com3' and click Save so you don't have to do that 
 all again next time. (Note that COM port numbers can change unexpectedly in Windows and you will then need to change your Putty saved settings.) 
 Yes, the user interface leaves a lot to be desired:
 
-![Putty Setup 2](putty-setup-2.png)
+![Putty Setup 2](img/putty-setup-2.png)
 
 
 ## Setting up WiFi
