@@ -76,8 +76,29 @@ Open a command shell (CMD.EXE, or BASH.EXE):
 
     pip install --upgrade esptool
 
-Your device is called COM3 or COM4 or something along those lines.  Have a look in
-Device Manager under "Ports (COM & LPT)" for a familiar name.
+Your device is called COM3 or COM4 or something along those lines.  You can find the correct COM port a number of ways. 
+
+In command line:
+
+    mode
+
+This returns something like this:
+
+    Status for device COM15:
+    ------------------------
+    Baud:            1200
+    Parity:          None
+    Data Bits:       8
+    Stop Bits:       1
+    Timeout:         OFF
+    XON/XOFF:        OFF
+    CTS handshaking: OFF
+    DSR handshaking: OFF
+    DSR sensitivity: OFF
+    DTR circuit:     ON
+    RTS circuit:     ON
+    
+Or have a look in Device Manager under "Ports (COM & LPT)" for a familiar name.
 
 ![USB to Serial Device in Windows](img/usb-to-serial-windows.png)
 
@@ -146,17 +167,17 @@ WebREPL up and going (see [WebREPL and WebPad](webrepl-and-webpad.md))
 Otherwise, I've successfully used 'PuTTY' which is available from
 http://chiark.greenend.org.uk/~sgtatham/putty/latest.html 
 
-Run PuTTY, select 'Connection' 'Serial' and set the serial line to COM3, the speed to
+Run PuTTY, select 'Connection' 'Serial' and set the serial line to the previously identified COM port number (e.g. COM3), the speed to
 115200 and Flow Control to None:
 
-![Putty Setup](putty-setup-1.png)
+![Putty Setup](img/putty-setup-1.png)
 
 Go back up to "Session" on the lefthand menu, check "Serial" on the right, then click "Open".
 You can then give your session a name 'com3' and click Save so you don't have to do that 
-all again next time.
+all again next time. (Note that COM port numbers can change unexpectedly in Windows and you will then need to change your Putty saved settings.) 
 Yes, the user interface leaves a lot to be desired:
 
-![Putty Setup 2](putty-setup-2.png)
+![Putty Setup 2](img/putty-setup-2.png)
 
 
 ## Setting up WiFi
@@ -175,6 +196,8 @@ do the following
 
 That last command returns a tuple of (IP address, netmask, gateway address, DNS address).
 Note down your IP address ... we'll use it later.
+
+Note: some corporate wifi systems are not easy to connect to, if the connection doesn't seem to be working try connecting to wifi on your phone or a small network you control.
 
 # EXERCISES
 
